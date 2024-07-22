@@ -12,6 +12,23 @@ from transform import transformer
 from mask import show_mask
 
 def main():
+      """
+    Segment using FRCNN and SAM:
+
+    This function parses command-line arguments for segmenting an image using Faster R-CNN and SAM models.
+    It supports specifying the paths for model weights and image, as well as the model type and device to use.
+
+    Command-line arguments:
+        --frcnn_weights (str): Optional. Path to the FasterRCNN_ResNet50_FPN_V2_Weights. Default is 'FasterRCNN_ResNet50_FPN_V2_Weights'.
+        sam_model_checkpoint (str): Required. Path to the SAM model checkpoint. Download from 
+            https://github.com/facebookresearch/segment-anything?tab=readme-ov-file#model-checkpoints
+        sam_model_type (str): Required. The type of the SAM model corresponding to the downloaded checkpoint, e.g., "vit_b".
+        image (str): Required. Path to the image file to be segmented.
+        device (str): Required. The device to use for computation, e.g., 'cuda' or 'cpu'.
+
+    Example usage:
+        python script.py --frcnn_weights path/to/frcnn_weights.pth path/to/sam_checkpoint.pth vit_b path/to/image.jpg cuda
+    """
 
     parser = argparse.ArgumentParser(description = 'Segment using FRCNN and SAM:')
 
