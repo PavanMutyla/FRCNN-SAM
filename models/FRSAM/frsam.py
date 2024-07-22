@@ -46,7 +46,7 @@ class FRS(nn.Module):
                     masks, _, _ = self.predictor.predict(
                         point_coords=None,
                         point_labels=None,
-                        box=box[None, :],
+                        box=box[None, :], # takes box inputs and turn's off other inputs ways for SAM
                         multimask_output=False
                     )
                     segment_results.append(masks)

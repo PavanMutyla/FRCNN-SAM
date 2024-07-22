@@ -9,12 +9,13 @@ import matplotlib.pyplot as plt
 from torchvision.models.detection import fasterrcnn_resnet50_fpn_v2, FasterRCNN_ResNet50_FPN_V2_Weights
 import argparse 
 from transform import transformer 
+from mask import show_mask
 
 def main():
 
     parser = argparse.ArgumentParser(description = 'Segment using FRCNN and SAM:')
 
-    parser.add_argument('frcnn_weights', type = str,  help = ' FasterRCNN_ResNet50_FPN_V2_Weights are default')
+    parser.add_argument('--frcnn_weights', type = str,  help = ' FasterRCNN_ResNet50_FPN_V2_Weights are default')
     parser.add_argument('sam_model_checkpoint', type = str, help = 'download sam model checkpoints, form https://github.com/facebookresearch/segment-anything?tab=readme-ov-file#model-checkpoints')
     parser.add_argument('sam_model_type', type = str, help = 'sam model type of your downloaded checkpoint, example"vit_b"')
     parser.add_argument('image', type = str, help = 'image path')
@@ -33,6 +34,18 @@ def main():
 
     transformed_img, img = transformer(image, device = args.device)
 
+    model.eval() 
+    boxes, masks, scores, labels = model(img, transformed_img)
+
+    list_masks = []
+    for box, mask, score, label in zip(boxes,masks, scores, labels ):
+        if score > 0.9 and label==1: # here m is 1 as I am only checking with human class
+            list.append(mask)
+
+    show_mask(list_masks, img)
+
+
+    
 if __name__== '__main__':
     main()
 
