@@ -56,7 +56,7 @@ def main():
 
     list_masks = []
     for box, mask, score, label in zip(boxes,masks, scores, labels ):
-        if score > 0.9 and label==1: # here m is 1 as I am only checking with human class
+        if score > 0.9 and label==1: # here label is 1 as I am only checking with human class
             list.append(mask)
 
     show_mask(list_masks, img)
