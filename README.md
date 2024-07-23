@@ -39,7 +39,7 @@ To set up the project, follow these instructions:
 To run the instance segmentation, use the following command:
 
 ```bash
-python3 main.py --frcnn_weights path/to/frcnn_weights.pth sam_model_checkpoint path/to/sam_checkpoint.pth sam_model_type vit_b image path/to/image.jpg device cuda
+python3 models/FRSAM/main.py --frcnn_weights path/to/frcnn_weights.pth sam_model_checkpoint path/to/sam_checkpoint.pth sam_model_type vit_b image path/to/image.jpg device cuda
 ```
 
 The confidence_threshold is set to 0.9 and the targeted class is 'Human', you can change it in  - [main.py](https://github.com/PavanMutyla/FRCNN-SAM/blob/main/models/FRSAM/main.py)
